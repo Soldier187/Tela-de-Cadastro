@@ -10,40 +10,45 @@ let B7validator = {
             let check = B7validator.checkInput(input);
             if(check !== true) {
                 send = false;
-               console.log(check)
+                B7validator.showError(input, check);
             }
         }
-
-       
-        if(send)  {
+  
+        if(send) {
             form.submit();
         }
     },
     checkInput:(input) => {
         let rules = input.getAttribute('data-rules');
-
+        
         if(rules !== null) {
-            rules = rules.split('|');
-            for(let k in rules); {
-                let rDetails = rules[k].split('=');
-                switch(rDetails[0]) {
-                   case 'required':
-                    if(input.value == ''){
-                       return 'Campo não pode ser vazio.';
-                    }
-
+             rules = rules.split('|');
+             for(let k in rules) {
+                let rDetaisls = rules[k].split('=');
+                switch(rDetaisls[0]) {
+                    case 'required':
+                         if(input.value == '') {
+                            return 'Campo não pode ser vazio.';
+                         }
                     break;
                     case 'min':
 
                     break;
-            }
-                
-         }
-     }
+
+                }
+             }
+        }
 
         return true;
+    },
+    showError:(input, console.error) => {
+       input.style.borderColor = '#FF0000';
+       
+       let errorElement = document.createElement('div');
+       errorElement.classList.add('error');
+       errorElement.innerHTML = error; 
     }
-};
+},
 
 let form = document.querySelector('.b7validator');
-form.addEventListener('submit', B7validator.handleSubmit);
+form.addEventListener('submit', b7validator.handleSubmit);
