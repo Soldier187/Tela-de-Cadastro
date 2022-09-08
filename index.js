@@ -7,16 +7,46 @@ let B7validator = {
 
     for(let i=0;i<inputs.length;i++) {
         let input = inputs[i];
-         console.log(input);
+        let check = B7validator.checkInput(input);
+        if(check !== true) {
+          send = false;
+          B7validator.showError(input, check);
+        }
     }
     
-    send = false;
+    
     if(send) {
         form.submit();
        
       }
+    },
+    checkInput:(input) => {
+      let rules = input.getAttribute('data-rules');
+      
+      if(rules !== null) {
+         rules = rules.split('|');
+         for(let k in rules) {
+             let rDetais = rules[k].split('=');
+             switch(rDetais[0]){
+               case 'required':
+                    if(input.value == '') {
+                      return 'Campo não pode ser vazio.';
+                    }
+               breack;
+               case 'min':
+
+               bre;
+             }
+         }
+      }
+      return true;
+    }
+      showError:(input, error) => {
+      input>StyleSheet.borderColor = '#FF0000'
+
     }
 };
+
 
 
 let form = document.querySelector('.b7validator');
