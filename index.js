@@ -1,6 +1,6 @@
 let B7validator = {
     handleSubmit:(event)=>{
-    event.preventDefault();
+       event.preventDefault();
     let send = true;
 
     let inputs = form.querySelectorAll('input');
@@ -8,7 +8,6 @@ let B7validator = {
     for(let i=0;i<inputs.length;i++) {
         let input = inputs[i];
         let check = B7validator.checkInput(input);
-        console.log(input[i].value)
         if(check !== true) {
           send = false;
           B7validator.showError(input, check);
@@ -23,8 +22,8 @@ let B7validator = {
       if(rules !== null) {
          rules = rules.split('|');
          for(let k in rules) {
-             let rDetais = rules[k].split('=');
-             switch(rDetais[0]){
+             let rDetails = rules[k].split('=');
+             switch(rDetails[0]){
                case 'required':
                     if(input.value == '') {
                       return 'Campo não pode ser vazio.';
@@ -47,4 +46,15 @@ let B7validator = {
 
 
 let form = document.querySelector('.b7validator');
-form.addEventListener('submit', B7validator.handleSubmit)
+form.addEventListener('submit', B7validator.handleSubmit);
+
+
+
+
+
+
+
+
+
+
+//console.log(input[i].value) linha 11 o erro 
