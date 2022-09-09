@@ -8,6 +8,7 @@ let B7validator = {
     for(let i=0;i<inputs.length;i++) {
         let input = inputs[i];
         let check = B7validator.checkInput(input);
+        console.log(input[i].value)
         if(check !== true) {
           send = false;
           B7validator.showError(input, check);
@@ -15,10 +16,6 @@ let B7validator = {
     }
     
     
-    if(send) {
-        form.submit();
-       
-      }
     },
     checkInput:(input) => {
       let rules = input.getAttribute('data-rules');
@@ -32,17 +29,17 @@ let B7validator = {
                     if(input.value == '') {
                       return 'Campo não pode ser vazio.';
                     }
-               breack;
+               break;
                case 'min':
 
-               bre;
+               break;
              }
          }
       }
       return true;
-    }
+    },
       showError:(input, error) => {
-      input>StyleSheet.borderColor = '#FF0000'
+      input.style.borderColor = '#FF0000'
 
     }
 };
@@ -50,4 +47,4 @@ let B7validator = {
 
 
 let form = document.querySelector('.b7validator');
-form.addEventListener('.submit',)
+form.addEventListener('submit', B7validator.handleSubmit)
