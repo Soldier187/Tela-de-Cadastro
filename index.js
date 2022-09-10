@@ -4,6 +4,8 @@ let B7validator = {
     let send = true;
 
     let inputs = form.querySelectorAll('input');
+    
+    B7validator.clearErros();
 
     for(let i=0;i<inputs.length;i++) {
         let input = inputs[i];
@@ -26,7 +28,7 @@ let B7validator = {
              switch(rDetails[0]){
                case 'required':
                     if(input.value == '') {
-                      return 'Campo não pode ser vazio.';
+                      return 'Preencha o campo.';
                     }
                break;
                case 'min':
@@ -40,6 +42,24 @@ let B7validator = {
       showError:(input, error) => {
       input.style.borderColor = '#FF0000'
 
+
+      let errorElement = document.createElement('div');
+      errorElement.classList.add('error');
+      errorElement.innerHTML = error;
+
+      input.parentElement.insertBefore(errorElement, input.ElementSibling);
+
+    },
+    clearErros:() => {
+      let inputs = form.querySelectorAll('input');
+      for(let i=0;i<inputs.length;i++){
+        inputs[i].style = '';
+      }
+       
+      let errorElements = document.querySelectorAll('.error');
+      for(let i=0;i<errorElements.length;i++) {
+          errorElements[i].remove();
+      }
     }
 };
 

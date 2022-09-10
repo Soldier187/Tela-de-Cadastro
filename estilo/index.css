@@ -37,3 +37,10 @@ body{
     outline: 0;
     
 }
+
+.error {
+    font: size 11px;
+    background-color: #FF0000;
+    color: #FFF;
+    padding: 4px;
+}
